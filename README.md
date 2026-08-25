@@ -1,279 +1,279 @@
-# RSVP Reader
+# RSVP Читалка
 
-A Svelte-based Rapid Serial Visual Presentation (RSVP) reader for speed reading with PDF and EPUB support.
+Svelte-приложение для скорочтения в режиме быстрого последовательного визуального предъявления (RSVP) с поддержкой форматов PDF и EPUB.
 
-## Online version / DEMO
+## Онлайн-версия / ДЕМО
 
-Link: https://rsvp.n0name.eu/
+Ссылка: https://rsvp.n0name.eu/
 
 <video src="rsvp-clip.mp4" controls width="600"></video>
 
-## What is RSVP?
+## Что такое RSVP?
 
-Rapid Serial Visual Presentation (RSVP) is a technique where text is displayed one word at a time at a fixed focal point. This eliminates the need for eye movements (saccades) during reading, potentially allowing for significantly faster reading speeds.
+Быстрое последовательное визуальное предъявление (Rapid Serial Visual Presentation, RSVP) — это техника, при которой текст отображается по одному слову в фиксированной точке экрана. Это исключает необходимость движений глаз (саккад) во время чтения, что позволяет значительно увеличить скорость чтения.
 
-The app uses **Optimal Recognition Point (ORP)** highlighting - the red letter in each word indicates the point where your eye naturally focuses for fastest word recognition. This is calculated based on word length:
+В приложении используется подсветка **оптимальной точки распознавания (Optimal Recognition Point, ORP)** — красная буква в каждом слове указывает на точку, на которой естественным образом фокусируется ваш глаз для максимально быстрого распознавания слова. Она рассчитывается на основе длины слова:
 
-- 1-3 letter words: 1st letter
-- 4-5 letter words: 2nd letter
-- 6-9 letter words: 3rd letter
-- 10+ letter words: 4th letter
+- Слова из 1-3 букв: 1-я буква
+- Слова из 4-5 букв: 2-я буква
+- Слова из 6-9 букв: 3-я буква
+- Слова из 10+ букв: 4-я буква
 
-## Features
+## Функционал
 
-- **PDF & EPUB Support**: Upload PDF documents or EPUB e-books directly
-- **Adjustable reading speed**: 50-1000 words per minute (WPM)
-- **ORP highlighting**: Red-highlighted focal letter for faster recognition
-- **Monospace display**: Fixed-width font keeps the focal point stable
-- **Focus mode**: Minimal UI during reading for distraction-free experience
-- **Fade effect**: Optional smooth transitions between words
-- **Punctuation pauses**: Configurable extra pause on sentence-ending punctuation
-- **Periodic pauses**: Optional pause every N words for comprehension
-- **Progress tracking**: Visual progress bar and time remaining
-- **Save progress**: Save your reading session and resume later
-- **Jump to position**: Skip to any word number or percentage in the text
-- **Clickable progress bar**: Click anywhere on the progress bar to jump to that position
-- **Keyboard shortcuts**: Full keyboard control for hands-free reading
-- **Dark theme**: Easy on the eyes with black background
+- **Поддержка PDF и EPUB**: Загружайте PDF-документы или электронные книги EPUB напрямую
+- **Регулируемая скорость чтения**: от 50 до 1000 слов в минуту (WPM)
+- **ORP-подсветка**: Выделенная красным цветом фокусная буква для быстрого распознавания
+- **Моноширинный шрифт**: Фиксированная ширина шрифта удерживает фокусную точку на месте
+- **Режим фокуса**: Минималистичный интерфейс во время чтения для работы без отвлекающих факторов
+- **Эффект затухания**: Плавные переходы между словами (опционально)
+- **Паузы на знаках препинания**: Настраиваемая дополнительная пауза в конце предложений
+- **Периодические паузы**: Опциональная пауза каждые N слов для лучшего усвоения материала
+- **Отслеживание прогресса**: Визуальная шкала прогресса и оставшееся время
+- **Сохранение прогресса**: Сохраняйте сеанс чтения и возобновляйте его позже
+- **Переход к позиции**: Переход к любому номеру слова или проценту в тексте
+- **Интерактивная шкала прогресса**: Кликните в любое место шкалы, чтобы перейти к этой позиции
+- **Горячие клавиши**: Полное управление с клавиатуры для чтения без рук
+- **Темная тема**: Комфортна для глаз, с черным фоном
 
-## Installation
+## Установка
 
 ```bash
-# Clone the repository
+# Клонируйте репозиторий
 git clone https://github.com/yourusername/rsvp.git
 cd rsvp
 
-# Install dependencies
+# Установите зависимости
 npm install
 
-# Start development server
+# Запустите сервер разработки
 npm run dev
 ```
 
 ## Docker
 
-Run the app using Docker Compose:
+Запуск приложения с помощью Docker Compose:
 
 ```bash
 cd docker
 docker compose up -d
 ```
 
-The app will be available at http://localhost:8080
+Приложение будет доступно по адресу http://localhost:8080
 
-To rebuild after changes:
+Для пересборки после внесения изменений:
 
 ```bash
 docker compose up -d --build
 ```
 
-## Usage
+## Использование
 
-### Running the App
+### Запуск приложения
 
 ```bash
-# Development mode with hot reload
+# Режим разработки с поддержкой Hot Reload
 npm run dev
 
-# Build for production
+# Сборка для продакшна
 npm run build
 
-# Preview production build
+# Предпросмотр продакшн-сборки
 npm run preview
 ```
 
-### Loading Content
+### Загрузка контента
 
-**From Files:**
-1. Click the document icon in the header
-2. Click "Upload PDF or EPUB"
-3. Select your PDF or EPUB file
-4. The text will be extracted and loaded automatically
+**Из файлов:**
+1. Нажмите на иконку документа в шапке сайта
+2. Нажмите «Загрузить PDF или EPUB»
+3. Выберите нужный файл PDF или EPUB
+4. Текст будет автоматически извлечен и загружен
 
-**From Text:**
-1. Click the document icon in the header
-2. Paste or type your text in the textarea
-3. Click "Load Text"
+**Из текста:**
+1. Нажмите на иконку документа в шапке сайта
+2. Вставьте или введите текст в поле ввода
+3. Нажмите «Загрузить текст»
 
-### Controls
+### Управление
 
-**Buttons:**
-- **Play**: Start reading from the beginning or current position
-- **Pause**: Pause reading (UI enters focus mode with minimal controls)
-- **Resume**: Continue from where you paused
-- **Stop**: Stop and reset to beginning
-- **Restart**: Stop and immediately start from beginning
+**Кнопки:**
+- **Воспроизведение (Play)**: Начать чтение с начала или с текущей позиции
+- **Пауза**: Приостановить чтение (интерфейс переходит в режим фокуса с минимальным набором элементов управления)
+- **Продолжить (Resume)**: Продолжить с места остановки
+- **Стоп**: Остановить и сбросить в начало
+- **Перезапуск**: Остановить и сразу начать с начала
 
-**Keyboard Shortcuts:**
-| Key | Action |
-|-----|--------|
-| `Space` | Play/Pause/Resume |
-| `Escape` | Exit focus mode (or close dialogs) |
-| `Arrow Up` | Increase speed (+25 WPM) |
-| `Arrow Down` | Decrease speed (-25 WPM) |
-| `Arrow Left` | Go back one word |
-| `Arrow Right` | Skip forward one word |
-| `G` | Open jump to position dialog |
-| `Ctrl+S` / `Cmd+S` | Save current progress |
+**Горячие клавиши:**
+| Клавиша | Действие |
+|---------|----------|
+| `Пробел` | Воспроизведение / Пауза / Продолжить |
+| `Escape` | Выход из режима фокуса (или закрытие диалогов) |
+| `Стрелка вверх` | Увеличить скорость (+25 WPM) |
+| `Стрелка вниз` | Уменьшить скорость (-25 WPM) |
+| `Стрелка влево` | Назад на одно слово |
+| `Стрелка вправо` | Вперед на одно слово |
+| `G` | Открыть диалог перехода к позиции |
+| `Ctrl+S` / `Cmd+S` | Сохранить текущий прогресс |
 
-### Saving and Resuming Progress
+### Сохранение и возобновление прогресса
 
-**Save Progress:**
-- Click the save icon in the header (floppy disk icon)
-- Or press `Ctrl+S` (Windows/Linux) or `Cmd+S` (Mac)
-- Your current position, text, and all settings are saved to browser storage
+**Сохранение прогресса:**
+- Нажмите на иконку сохранения в шапке (дискета)
+- Или нажмите `Ctrl+S` (Windows/Linux) или `Cmd+S` (Mac)
+- Ваша текущая позиция, текст и все настройки сохраняются в локальное хранилище браузера (localStorage)
 
-**Resume Reading:**
-- When you return to the app, you'll be prompted to resume your saved session
-- Click "Resume" to continue from where you left off
-- Click "Start Fresh" to begin with the default text
+**Возобновление чтения:**
+- При повторном посещении приложения вам будет предложено восстановить сохраненную сессию
+- Нажмите «Продолжить», чтобы начать с того места, где вы остановились
+- Нажмите «Начать сначала», чтобы использовать текст по умолчанию
 
-### Jump to Position
+### Переход к позиции
 
-**Using the Jump Dialog:**
-1. Click the code bracket icon in the header, or press `G`
-2. Enter a word number (e.g., `150`) or percentage (e.g., `50%`)
-3. Click "Go" or press Enter
+**Через диалог перехода:**
+1. Нажмите на иконку угловых скобок в шапке или нажмите клавишу `G`
+2. Введите номер слова (например, `150`) или процент (например, `50%`)
+3. Нажмите «Перейти» или клавишу Enter
 
-**Quick Jump Buttons:**
-- Use the preset buttons (Start, 25%, 50%, 75%) for quick navigation
+**Быстрые кнопки перехода:**
+- Используйте кнопки быстрой навигации (Начало, 25%, 50%, 75%)
 
-**Clickable Progress Bar:**
-- When not playing, click anywhere on the progress bar to jump directly to that position
-- The progress bar expands on hover to make clicking easier
+**Интерактивная шкала прогресса:**
+- Когда чтение приостановлено, кликните в любое место шкалы прогресса для прямого перехода к этой позиции
+- Шкала увеличивается при наведении для удобства клика
 
-### Settings
+### Настройки
 
-Click the gear icon to access settings:
+Нажмите на иконку шестеренки, чтобы открыть настройки:
 
-- **Words Per Minute**: Reading speed (50-1000 WPM)
-- **Enable Fade Effect**: Smooth fade transition between words
-- **Fade Duration**: Duration of fade effect (50-300ms)
-- **Pause on Punctuation**: Extra pause at sentence endings
-- **Punctuation Pause Multiplier**: How much longer to pause (1-4x)
-- **Pause Every N Words**: Take a break every N words (0 = disabled)
-- **Pause Duration**: Length of periodic pauses (100-2000ms)
+- **Слов в минуту (WPM)**: Скорость чтения (50–1000 WPM)
+- **Включить эффект затухания**: Плавный переход между словами
+- **Длительность затухания**: Длительность эффекта затухания (50–300 мс)
+- **Пауза на знаках препинания**: Дополнительная пауза в конце предложений
+- **Множитель паузы**: Насколько дольше длится пауза (1–4x)
+- **Пауза каждые N слов**: Делать перерыв каждые N слов (0 = отключено)
+- **Длительность паузы**: Длительность периодических пауз (100–2000 мс)
 
-## Project Structure
+## Структура проекта
 
 ```
 rsvp/
 ├── src/
-│   ├── App.svelte              # Main application component
-│   ├── app.css                 # Global styles
-│   ├── main.js                 # Application entry point
+│   ├── App.svelte              # Главный компонент приложения
+│   ├── app.css                 # Глобальные стили
+│   ├── main.js                 # Точка входа приложения
 │   ├── lib/
-│   │   ├── rsvp-utils.js       # Core RSVP utility functions
-│   │   ├── file-parsers.js     # PDF and EPUB parsing utilities
-│   │   ├── progress-storage.js # Session save/load utilities
+│   │   ├── rsvp-utils.js       # Основные утилиты RSVP
+│   │   ├── file-parsers.js     # Утилиты парсинга PDF и EPUB
+│   │   ├── progress-storage.js # Утилиты сохранения/загрузки сессий
 │   │   └── components/
-│   │       ├── RSVPDisplay.svelte   # Word display component
-│   │       ├── Controls.svelte      # Playback controls
-│   │       ├── Settings.svelte      # Settings panel
-│   │       ├── TextInput.svelte     # Text/file input panel
-│   │       └── ProgressBar.svelte   # Progress indicator (clickable)
+│   │       ├── RSVPDisplay.svelte   # Компонент отображения слов
+│   │       ├── Controls.svelte      # Элементы управления воспроизведением
+│   │       ├── Settings.svelte      # Панель настроек
+│   │       ├── TextInput.svelte     # Панель ввода текста/файлов
+│   │       └── ProgressBar.svelte   # Индикатор прогресса (интерактивный)
 │   └── tests/
-│       ├── setup.js                 # Test setup
-│       ├── rsvp-utils.test.js       # RSVP utility tests
-│       ├── file-parsers.test.js     # File parser tests
-│       └── progress-storage.test.js # Progress storage tests
+│       ├── setup.js                 # Настройка тестов
+│       ├── rsvp-utils.test.js       # Тесты утилит RSVP
+│       ├── file-parsers.test.js     # Тесты парсеров файлов
+│       └── progress-storage.test.js # Тесты сохранения прогресса
 ├── index.html
 ├── package.json
 ├── vite.config.js
 └── README.md
 ```
 
-## Testing
+## Тестирование
 
 ```bash
-# Run tests in watch mode
+# Запуск тестов в режиме наблюдения (watch mode)
 npm test
 
-# Run tests once
+# Запуск тестов один раз
 npm run test:run
 
-# Run tests with coverage
+# Запуск тестов с отчетом о покрытии кода (coverage)
 npm run test:coverage
 ```
 
-## API Reference
+## Справочник API
 
-### Utility Functions (`src/lib/rsvp-utils.js`)
+### Утилиты (`src/lib/rsvp-utils.js`)
 
 #### `parseText(text)`
-Parses input text into an array of words.
+Разбивает входящий текст на массив слов.
 
 ```javascript
-parseText('Hello world') // ['Hello', 'world']
+parseText('Привет мир') // ['Привет', 'мир']
 ```
 
 #### `getORPIndex(word)`
-Calculates the Optimal Recognition Point index for a word.
+Вычисляет индекс оптимальной точки распознавания (ORP) для слова.
 
 ```javascript
-getORPIndex('hello') // 1 (second letter 'e')
+getORPIndex('привет') // 2 (третья буква 'и')
 ```
 
 #### `getActualORPIndex(word)`
-Gets the actual character index for ORP, accounting for leading punctuation.
+Вычисляет реальный индекс символа для ORP с учетом начальных знаков препинания.
 
 ```javascript
-getActualORPIndex('"hello') // 2 (skips the quote)
+getActualORPIndex('"привет') // 3 (пропускает кавычку)
 ```
 
 #### `getWordDelay(word, wpm, pauseOnPunctuation, multiplier)`
-Calculates the display delay for a word based on WPM and punctuation.
+Рассчитывает задержку отображения слова на основе WPM и знаков препинания.
 
 ```javascript
-getWordDelay('hello', 300) // 200 (ms)
-getWordDelay('end.', 300, true, 2) // 400 (ms)
+getWordDelay('привет', 300) // 200 (мс)
+getWordDelay('конец.', 300, true, 2) // 400 (мс)
 ```
 
 #### `formatTimeRemaining(remainingWords, wpm)`
-Formats remaining time as MM:SS.
+Форматирует оставшееся время в формат ММ:СС.
 
 ```javascript
 formatTimeRemaining(300, 300) // '1:00'
 ```
 
 #### `splitWordForDisplay(word)`
-Splits a word into parts for ORP display.
+Разделяет слово на части для отображения ORP.
 
 ```javascript
-splitWordForDisplay('hello')
-// { before: 'h', orp: 'e', after: 'llo' }
+splitWordForDisplay('привет')
+// { before: 'пр', orp: 'и', after: 'вет' }
 ```
 
 #### `shouldPauseAtWord(wordIndex, pauseAfterWords)`
-Checks if reading should pause at the current word.
+Проверяет, нужно ли сделать паузу на текущем слове.
 
 ```javascript
 shouldPauseAtWord(10, 10) // true
 shouldPauseAtWord(5, 10)  // false
 ```
 
-### File Parsers (`src/lib/file-parsers.js`)
+### Парсеры файлов (`src/lib/file-parsers.js`)
 
 #### `parsePDF(file)`
-Extracts text content from a PDF file.
+Извлекает текстовое содержимое из PDF-файла.
 
 #### `parseEPUB(file)`
-Extracts text content from an EPUB e-book.
+Извлекает текстовое содержимое из электронной книги EPUB.
 
 #### `parseFile(file)`
-Auto-detects file type and parses accordingly.
+Автоматически определяет тип файла и выполняет его парсинг.
 
 #### `getSupportedExtensions()`
-Returns supported file extensions (`.pdf,.epub`).
+Возвращает поддерживаемые расширения файлов (`.pdf,.epub`).
 
-### Progress Storage (`src/lib/progress-storage.js`)
+### Хранение прогресса (`src/lib/progress-storage.js`)
 
 #### `saveSession(session)`
-Saves the current reading session to localStorage.
+Сохраняет текущую сессию чтения в localStorage.
 
 ```javascript
 saveSession({
-  text: 'Your text content...',
+  text: 'Содержимое вашего текста...',
   currentWordIndex: 150,
   totalWords: 500,
   settings: { wordsPerMinute: 300 }
@@ -281,7 +281,7 @@ saveSession({
 ```
 
 #### `loadSession()`
-Loads a saved reading session from localStorage.
+Загружает сохраненную сессию чтения из localStorage.
 
 ```javascript
 const session = loadSession()
@@ -289,21 +289,21 @@ const session = loadSession()
 ```
 
 #### `hasSession()`
-Checks if a saved session exists.
+Проверяет наличие сохраненной сессии.
 
 ```javascript
-hasSession() // true or false
+hasSession() // true или false
 ```
 
 #### `clearSession()`
-Removes the saved session from localStorage.
+Удаляет сохраненную сессию из localStorage.
 
 ```javascript
 clearSession() // true
 ```
 
 #### `getSessionSummary()`
-Gets session info without loading the full text.
+Получает информацию о сессии без загрузки полного текста.
 
 ```javascript
 getSessionSummary()
@@ -311,7 +311,7 @@ getSessionSummary()
 ```
 
 #### `percentageToWordIndex(percentage, totalWords)`
-Converts a percentage to a word index.
+Конвертирует процентное значение в индекс слова.
 
 ```javascript
 percentageToWordIndex(50, 100) // 50
@@ -319,47 +319,46 @@ percentageToWordIndex(25, 200) // 50
 ```
 
 #### `wordIndexToPercentage(wordIndex, totalWords)`
-Converts a word index to a percentage.
+Конвертирует индекс слова в процентное значение.
 
 ```javascript
 wordIndexToPercentage(50, 100) // 50
 wordIndexToPercentage(25, 50) // 50
 ```
 
-## Browser Support
+## Поддержка браузеров
 
-Works in all modern browsers:
-- Chrome (recommended)
+Работает во всех современных браузерах:
+- Chrome (рекомендуется)
 - Firefox
 - Safari
 - Edge
 
-## Dependencies
+## Зависимости
 
-- **pdfjs-dist**: PDF parsing
-- **epubjs**: EPUB e-book parsing
-- **Svelte 5**: UI framework
-- **Vite**: Build tool
+- **pdfjs-dist**: Парсинг PDF
+- **epubjs**: Парсинг электронных книг EPUB
+- **Svelte 5**: UI-фреймворк
+- **Vite**: Инструмент сборки
 
-## Contributing
+## Участие в разработке
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Вклады в проект приветствуются! Не стесняйтесь отправлять Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Форкните репозиторий
+2. Создайте ветку для новой функции (`git checkout -b feature/AmazingFeature`)
+3. Зафиксируйте изменения (`git commit -m 'Add some AmazingFeature'`)
+4. Отправьте изменения в ветку (`git push origin feature/AmazingFeature`)
+5. Откройте Pull Request
 
-## License
+## Лицензия
 
-This project is open source and available under the [MIT License](LICENSE).
+Этот проект распространяется с открытым исходным кодом под лицензией [MIT License](LICENSE).
 
-## Acknowledgments
+## Благодарности
 
-- Based on RSVP research in cognitive psychology
-- Inspired by various speed reading applications
-- Built with [Svelte](https://svelte.dev/) and [Vite](https://vitejs.dev/)
-- PDF parsing powered by [PDF.js](https://mozilla.github.io/pdf.js/)
-- EPUB parsing powered by [Epub.js](https://github.com/futurepress/epub.js/)
-
+- Основано на исследованиях RSVP в области когнитивной психологии
+- Вдохновлено различными приложениями для скорочтения
+- Создано с использованием [Svelte](https://svelte.dev/) и [Vite](https://vitejs.dev/)
+- Парсинг PDF работает на базе [PDF.js](https://mozilla.github.io/pdf.js/)
+- Парсинг EPUB работает на базе [Epub.js](https://github.com/futurepress/epub.js/)
